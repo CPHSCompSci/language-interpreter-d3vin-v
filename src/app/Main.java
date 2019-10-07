@@ -1,8 +1,14 @@
 package app;
 
+import java.util.Scanner;
+
 public class Main {
 	public static void main(String[] args) {
 		Lexicon lex = new Lexicon();
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Which function would you like to use: ");
+		System.out.println("1. Decode a word. \n 2. De");
 
 		//String newWord = lex.translate("food");
 		//System.out.println(newWord);
