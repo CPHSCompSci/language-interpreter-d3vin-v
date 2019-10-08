@@ -1,7 +1,7 @@
 package app;
 
 public class Lexicon {
-    private String[] list;
+    private static String[] list;
 
     public Lexicon() {
         list = new String[16];
@@ -23,7 +23,7 @@ public class Lexicon {
         list[15] = "Daentrkingy deentclivityingy. Aingy sientngle, coentnstructoringy ruentns. Beenttrayedingy byingy theent claentss.";
     }
     
-    public String getSample(int n) {
+    public static String getSample(int n) {
         return list[n];
     }
 
