@@ -110,7 +110,10 @@ public class Main {
 		String eWord = "";
 		boolean firstVowel = false;
 		for(int i = 0; i < word.length(); i++) {
-			if(firstVowel == false && (word.charAt(i) == 'a' || word.charAt(i) == 'e' || word.charAt(i) == 'i' || word.charAt(i) == 'o' || 
+			if(word.length() == 1) {
+				eWord += word + "ingy";
+				return eWord;
+			}else if(firstVowel == false && (word.charAt(i) == 'a' || word.charAt(i) == 'e' || word.charAt(i) == 'i' || word.charAt(i) == 'o' || 
 					word.charAt(i) == 'u')) {
 				firstVowel = true;
 				eWord += word.charAt(i) + "ent";
