@@ -7,13 +7,12 @@ public class Main {
 		Lexicon lex = new Lexicon();
 		Scanner scan = new Scanner(System.in);
 		
-		
-		  System.out.println("Which function would you like to use: "); 
-		  System.out.println("1. Decode a word. \n2. Decode a sentence. \n3. Encode a word. \n4. Encode a sentence."); 
-		  int menu = scan.nextInt();
-		  scan.nextLine();
+		System.out.println("Which function would you like to use: "); 
+		System.out.println("1. Decode a word. \n2. Decode a sentence. \n3. Encode a word. \n4. Encode a sentence."); 
+		int menu = scan.nextInt();
+		scan.nextLine();
 		  
-		  switch (menu) {
+		switch (menu) {
 		  	case 1:
 		  		System.out.println("Please enter the word you would like decoded: ");
 		  		String decodeWord = scan.nextLine();
@@ -23,25 +22,23 @@ public class Main {
 		  	case 2:
 		  		System.out.println("Please enter the sentence you would like decoded: ");
 		  		String decodePhrase = scan.nextLine();
-		  		String decodedP = decodeMessage(decodePhrase);
+		  		String decodedP = decodeMessage(decodePhrase, false);
 		  		System.out.println(decodedP);
 		  		break; 
 		  	case 3:
-		  		//encode code
 		  		System.out.println("Please enter a word you would like encoded: "); 
 		  		String encodeWord = scan.nextLine();
-		  		encode(encodeWord); 
-		  		System.out.println(encodeWord); 
+		  		String encodedW = encode(encodeWord); 
+		  		System.out.println(encodedW); 
 		  		break; 
 		  	case 4:
-		  		//encodeMessage code 
-		  		System.out.println("encodeMessage"); 
+		  		System.out.println("Please enter the sentence you would like encoded: "); 
 		  		String encodePhrase = scan.nextLine();
-		  		System.out.println(encodePhrase);
+		  		String encodedP = encodeMessage(encodePhrase);
+		  		System.out.println(encodedP);
 		  		break; 
 		  	}
 		 
-			
 		//String newWord = lex.translate("food");
 		//System.out.println(newWord);
 
@@ -53,16 +50,9 @@ public class Main {
 		
 		//String encodeWord = encode("Hilarious");
 		//System.out.println(encodeWord);
-		
 		 
 		scan.close();
 	}
-
-	/*
-	 * This method decodes a single word.
-	 * 
-	 * @param word The single word to be decoded.
-	 */
 	
 	public static String decode(String word) {
 		String dWord = "";
@@ -83,26 +73,33 @@ public class Main {
 		return dWord;
 	}
 
-  /**
-   * This method should not have code copy/pasted from the decode method.
-   * 
-   * @param message The sentence (multiple words) to be decoded.
-   */
-	public static String decodeMessage(String message) {
+	public static String decodeMessage(String message, boolean encode) {
 		String dMessage = "";
 		int lastSpace = 0;
 		for(int i = 0; i < message.length() - 1; i++) {
 			if(message.charAt(i + 1) == ' ' && lastSpace == 0) { // first word
 				String messageWord = message.substring(0, i + 1);
-				dMessage += decode(messageWord) + ' ';
+				if(encode = false) {
+					dMessage += decode(messageWord) + ' ';
+				}else {
+					dMessage += encode(messageWord) + ' ';
+				}
 				lastSpace = i + 1;
 			}else if(message.charAt(i + 1) == ' ' && lastSpace > 0) {
 				String messageWord = message.substring(lastSpace + 1, i + 1);
-				dMessage += decode(messageWord) + ' ';
+				if(encode = false) {
+					dMessage += decode(messageWord) + ' ';
+				}else {
+					dMessage += encode(messageWord) + ' ';
+				}
 				lastSpace = i + 1;
 			}else if(message.charAt(i + 1) == '.' && message.lastIndexOf(" ") == lastSpace) { // last word
 				String messageWord = message.substring(lastSpace + 1, i + 1);
-				dMessage += decode(messageWord) + message.charAt(i + 1);
+				if(encode = false) {
+					dMessage += decode(messageWord) + message.charAt(i + 1);
+				}else {
+					dMessage += encode(messageWord) + message.charAt(i + 1);
+				}
 				return dMessage;
 			}
 		}
@@ -113,12 +110,16 @@ public class Main {
 		String eWord = "";
 		boolean firstVowel = false;
 		for(int i = 0; i < word.length(); i++) {
-			if(word.charAt(i) == 'a' || word.charAt(i) == 'e' || word.charAt(i) == 'i' || word.charAt(i) == 'o' || word.charAt(i) == 'u' && 
-					firstVowel == false) {
+			if(firstVowel == false && (word.charAt(i) == 'a' || word.charAt(i) == 'e' || word.charAt(i) == 'i' || word.charAt(i) == 'o' || 
+					word.charAt(i) == 'u')) {
 				firstVowel = true;
 				eWord += word.charAt(i) + "ent";
-			}else if(i == word.length() - 1) {
-				eWord += word.charAt(i) + "ingy";
+			}else if(i == word.length() - 1 || (i + 1 == ',' || i + 1 == '.')) {
+				eWord += "ingy";
+				if(word.charAt(i) == '.' || word.charAt(i) == ',') {
+					eWord += word.charAt(i);
+				}
+				return eWord;
 			}else {
 				eWord += word.charAt(i);
 			}
@@ -128,7 +129,9 @@ public class Main {
 	}
 	
 	public static String encodeMessage(String message) {
+		String eMessage = "";
+		eMessage = decodeMessage(message, true);
 		
-		return "";
+		return eMessage;
 	}
 }
