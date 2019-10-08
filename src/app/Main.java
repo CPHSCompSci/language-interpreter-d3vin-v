@@ -40,7 +40,7 @@ public class Main {
 		  	}
 		 
 		//String newWord = lex.translate("food");
-		//System.out.println(newWord);
+		//System.out.println(newWord); 
 
 		//String word = decode("Hoenttingy.");
 		//System.out.println(word);
