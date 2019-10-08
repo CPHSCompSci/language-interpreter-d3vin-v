@@ -8,17 +8,52 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Which function would you like to use: ");
-		System.out.println("1. Decode a word. \n 2. De");
+		System.out.println("1. Decode a word. \n2. Decode a sentence. \n3. Encode a word. \n4. Encode a sentence.");
+		int menu = scan.nextInt();
 
+		switch (menu) {
+			case 1:
+				System.out.println("Please enter the word you would like decoded: ");
+				String decodeWord = scan.nextLine();
+				
+				decode(decodeWord);
+				System.out.println(decodeWord);
+				break;
+			case 2:
+				System.out.println("Plase enter the sentence you would like decoded: ");
+				String decodePhrase = scan.nextLine();
+				
+				decodeMessage(decodePhrase);
+				System.out.println(decodePhrase);
+				break;
+			case 3:
+				//encode code
+				System.out.println("encode");
+				String encodeWord = scan.nextLine();
+				
+				encode(encodeWord);
+				System.out.println(encodeWord);
+				break;
+			case 4:
+				//encodeMessage code
+				System.out.println("encodeMessage");
+				String encodePhrase = scan.nextLine();
+				
+				break;
+		}
+			
 		//String newWord = lex.translate("food");
 		//System.out.println(newWord);
 
 		//String word = decode("Hoenttingy.");
 		//System.out.println(word);
 		
-		String message = decodeMessage("Daentrkingy deentclivityingy. Aingy sientngleingy, coentnstructoringy ruentnsingy. "
-				+ "Beenttrayedingy byingy theent claentssingy.");
-		System.out.println(message);
+		/*
+		 * String message =
+		 * decodeMessage("");
+		 * System.out.println(message);
+		 */
+		scan.close();
 	}
 
 	/*
@@ -26,6 +61,7 @@ public class Main {
 	 * 
 	 * @param word The single word to be decoded.
 	 */
+	
 	public static String decode(String word) {
 		String dWord = "";
 		for(int i = 0; i < word.length(); i++) {
@@ -77,5 +113,10 @@ public class Main {
 			}
 		}
 		return dMessage;
+	}
+	
+	public static String encode(String word) {
+		
+		return "";
 	}
 }
